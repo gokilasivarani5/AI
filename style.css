@@ -47,3 +47,24 @@
   border-bottom: 11px solid transparent;
   border-right: 11px solid #4b5563; /* border-gray-600 */
 }
+/* Desktop - Show on Right */
+.password-hint-container {
+  position: absolute;
+  margin-left: 380px;
+  margin-top: -40px;
+}
+
+/* Tablet view */
+@media (max-width: 1024px) {
+  .password-hint-container {
+    margin-left: 320px;
+  }
+}
+
+/* Mobile view */
+@media (max-width: 768px) {
+  .password-hint-container {
+    position: static;
+    margin: 10px 0 0 0;
+  }
+}

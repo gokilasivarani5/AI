@@ -10,7 +10,6 @@
 
 <!-- Global Styles -->
 <link rel="stylesheet" href="styles.css">
-
 </head>
 
 <body class="bg-gradient-to-br from-gray-900 via-black to-blue-950 text-white min-h-screen flex items-center justify-center">
@@ -50,8 +49,7 @@
     <!-- PASSWORD -->
     <label class="block mb-1 text-gray-300 text-sm mt-2">Password</label>
 
-    <!-- IMPORTANT: wrapper aligns eye + dot -->
-    <div class="relative password-box">
+    <div class="relative">
 
       <input id="password" type="password"
         class="w-full px-3 py-2 pr-12 rounded-xl bg-gray-800 text-white border border-gray-700
@@ -63,7 +61,6 @@
         onclick="togglePassword()"
         class="absolute right-9 top-1/2 -translate-y-1/2 text-gray-300 hover:text-white transition">
 
-        <!-- Eye Open -->
         <svg id="eyeOpen" xmlns="http://www.w3.org/2000/svg"
              class="h-5 w-5"
              fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -73,7 +70,6 @@
           <circle cx="12" cy="12" r="3" stroke-width="2" />
         </svg>
 
-        <!-- Eye Close -->
         <svg id="eyeClose" xmlns="http://www.w3.org/2000/svg"
              class="h-5 w-5 hidden"
              fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -84,36 +80,16 @@
 
       </button>
 
-      <!-- DOT / CHECK -->
+      <!-- Dot / Tick -->
       <span id="passwordTick"
-        class="absolute right-2 top-1/2 -translate-y-1/2 flex items-center justify-center text-2xl leading-none z-10"
+        class="absolute right-2 top-1/2 -translate-y-1/2 flex items-center justify-center text-2xl leading-none"
         style="display:none">
         •
       </span>
 
     </div>
 
-    <!-- PASSWORD BUBBLE - OUTSIDE BOX -->
-    <div id="passwordHint"
-      class="hidden absolute"
-      style="margin-left: 380px; margin-top: -40px;">
-
-      <div class="bubble-box bg-gray-900 border border-gray-600 text-gray-200
-                  px-4 py-3 rounded-xl shadow-2xl w-64 text-xs">
-
-        <p class="text-blue-400 font-semibold mb-1">
-          Password Requirements
-        </p>
-
-        <div id="r1" class="mb-1">• Minimum 8 characters</div>
-        <div id="r2" class="mb-1">• Uppercase & lowercase letter</div>
-        <div id="r3" class="mb-1">• At least one number</div>
-        <div id="r4">• At least one special character (!@#$)</div>
-      </div>
-    </div>
-
     <small id="passwordError" class="text-red-400 text-xs"></small>
-
 
 
     <!-- CONFIRM PASSWORD -->
@@ -129,26 +105,41 @@
     <small id="confirmError" class="text-red-400 text-xs"></small>
 
 
-    <!-- BUTTON -->
+    <!-- REGISTER BUTTON -->
     <button id="registerBtn"
       class="w-full bg-blue-600 hover:bg-blue-500 py-2 mt-3 rounded-xl font-semibold
-             text-base transition-all duration-300 glow-btn
-             disabled:opacity-50 disabled:cursor-not-allowed">
+             text-base transition-all duration-300 glow-btn disabled:opacity-50 disabled:cursor-not-allowed">
       Register Account →
     </button>
 
   </form>
 
-  <!-- MESSAGE -->
   <p id="msg" class="text-center mt-3 text-sm"></p>
 
-  <!-- LOGIN LINK -->
   <p class="text-center text-gray-300 mt-2 text-xs">
     Already have an account?
     <a href="login.html" class="text-blue-400 hover:underline">Login here</a>
   </p>
 
 </div>
+
+
+<!-- ================= PASSWORD HINT BUBBLE (OUTSIDE CARD) ================= -->
+<div id="passwordHint"
+  class="hidden fixed z-50">
+
+  <div class="bubble-box bg-gray-900 border border-gray-600 text-gray-200
+              px-4 py-3 rounded-xl shadow-2xl w-64 text-xs">
+
+    <p class="text-blue-400 font-semibold mb-1">Password Requirements</p>
+
+    <div id="r1" class="mb-1">• Minimum 8 characters</div>
+    <div id="r2" class="mb-1">• Uppercase & lowercase letter</div>
+    <div id="r3" class="mb-1">• At least one number</div>
+    <div id="r4">• At least one special character (!@#$)</div>
+  </div>
+</div>
+
 
 <script src="register.js"></script>
 
