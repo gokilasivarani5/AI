@@ -7,6 +7,7 @@
 
 <script src="https://cdn.tailwindcss.com"></script>
 <link rel="stylesheet" href="styles.css">
+
 </head>
 
 <body class="bg-gradient-to-br from-gray-900 via-black to-blue-950 text-white min-h-screen flex items-center justify-center">
@@ -21,32 +22,90 @@
     Login to continue your AI journey
   </p>
 
+
+  <!-- ================= LOGIN FORM ================= -->
   <form onsubmit="loginUser(event)">
-    
+
+    <!-- EMAIL -->
     <label class="block mb-1 text-gray-300 text-sm">Email</label>
-    <input id="loginEmail" type="email" required
-      class="w-full mb-3 px-3 py-2 rounded-xl bg-gray-800 text-white border border-gray-700
+    <input id="loginEmail"
+      class="w-full px-3 py-2 rounded-xl bg-gray-800 text-white border border-gray-700
       focus:outline-none focus:border-blue-500"
       placeholder="Enter your email">
 
-    <label class="block mb-1 text-gray-300 text-sm">Password</label>
-    <input id="loginPassword" type="password" required
-      class="w-full mb-4 px-3 py-2 rounded-xl bg-gray-800 text-white border border-gray-700
-      focus:outline-none focus:border-blue-500"
-      placeholder="Enter password">
+    <small id="emailError" class="text-red-400 text-xs"></small>
 
-    <button
-      class="w-full glow-btn bg-blue-600 hover:bg-blue-500 py-2 rounded-xl font-semibold text-base transition-all duration-300">
+
+
+    <!-- PASSWORD -->
+    <label class="block mb-1 text-gray-300 text-sm mt-3">Password</label>
+
+    <div class="relative">
+      <input id="loginPassword" type="password"
+        class="w-full px-3 py-2 pr-12 rounded-xl bg-gray-800 text-white border border-gray-700
+        focus:outline-none focus:border-blue-500"
+        placeholder="Enter password">
+
+      <!-- Eye Button -->
+      <button type="button"
+        onclick="toggleLoginPassword()"
+        class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-300 hover:text-white">
+        
+        <svg id="eyeOpenLogin" xmlns="http://www.w3.org/2000/svg"
+          class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+           d="M2.458 12C3.732 7.943 7.523 5 12 5s8.268 2.943 9.542 7
+              c-1.274 4.057-5.065 7-9.542 7s-8.268-2.943-9.542-7z" />
+          <circle cx="12" cy="12" r="3" stroke-width="2" />
+        </svg>
+
+        <svg id="eyeCloseLogin" xmlns="http://www.w3.org/2000/svg"
+          class="h-5 w-5 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+           d="M13.875 18.825A10.05 10.05 0 0112 19c-4.477 0-8.268-2.943-9.542-7
+              a9.97 9.97 0 012.276-4.192M3 3l18 18"/>
+        </svg>
+      </button>
+    </div>
+
+    <small id="passError" class="text-red-400 text-xs"></small>
+
+
+    <!-- REMEMBER + FORGOT -->
+    <div class="flex justify-between items-center mt-2 text-xs">
+
+      <label class="flex items-center gap-2 cursor-pointer">
+        <input type="checkbox" id="rememberMe">
+        <span>Remember Me</span>
+      </label>
+
+     <a href="forgot-password.html" class="text-blue-400 hover:underline">
+  Forgot Password?
+</a>
+
+    </div>
+
+
+    <!-- LOGIN BUTTON -->
+    <button id="loginBtn"
+      class="w-full glow-btn bg-blue-600 hover:bg-blue-500 py-2 mt-4 rounded-xl font-semibold
+      text-base transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed">
       Login →
     </button>
+
   </form>
 
-  <p id="loginMsg" class="text-center mt-3 text-sm"></p>
 
+  <!-- MESSAGE -->
+  <p id="loginMsg" class="text-center mt-2 text-sm"></p>
+
+
+  <!-- REGISTER LINK -->
   <p class="text-center text-gray-300 mt-2 text-xs">
     Don’t have an account?
     <a href="register.html" class="text-blue-400 hover:underline">Register here</a>
   </p>
+
 
 </div>
 
