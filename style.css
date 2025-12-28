@@ -1,22 +1,49 @@
-/* Smooth fade animation */
+/* ================== Fade Animation ================== */
 .fade-in {
   animation: fadeIn 1.5s ease-in-out forwards;
   opacity: 0;
 }
 
 @keyframes fadeIn {
-  0% { 
-    opacity: 0; 
-    transform: translateY(20px);
-  }
-  100% { 
-    opacity: 1; 
-    transform: translateY(0);
-  }
+  0% { opacity: 0; transform: translateY(20px); }
+  100% { opacity: 1; transform: translateY(0); }
 }
 
-/* Button glow effect */
+
+/* ================== Button Glow ================== */
 .glow-btn:hover {
-  box-shadow: 0 0 20px rgba(59,130,246,0.8);
-  transform: scale(1.05);
+  box-shadow: 0 0 20px rgba(59,130,246,0.9);
+  transform: scale(1.03);
+}
+
+
+/* ================== Password Bubble  ================== */
+.bubble-box {
+  position: relative;
+}
+
+/* Arrow (pointing LEFT to password field) */
+.bubble-box::before {
+  content: "";
+  position: absolute;
+  left: -10px;
+  top: 22px;
+  width: 0;
+  height: 0;
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+  border-right: 10px solid #111827; /* bg-gray-900 */
+}
+
+/* Border edge of arrow */
+.bubble-box::after {
+  content: "";
+  position: absolute;
+  left: -12px;
+  top: 21px;
+  width: 0;
+  height: 0;
+  border-top: 11px solid transparent;
+  border-bottom: 11px solid transparent;
+  border-right: 11px solid #4b5563; /* border-gray-600 */
 }

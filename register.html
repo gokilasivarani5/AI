@@ -5,70 +5,152 @@
 <title>Register | Virtual AI Assistant</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<!-- Tailwind CDN -->
+<!-- Tailwind -->
 <script src="https://cdn.tailwindcss.com"></script>
 
-<!-- External CSS -->
+<!-- Global Styles -->
 <link rel="stylesheet" href="styles.css">
 
 </head>
 
 <body class="bg-gradient-to-br from-gray-900 via-black to-blue-950 text-white min-h-screen flex items-center justify-center">
 
-<div class="w-full max-w-md mx-4 bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl p-6 md:p-8 fade-in">
+<!-- ================= MAIN CARD ================= -->
+<div class="w-full max-w-xs md:max-w-sm mx-4 bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl p-4 fade-in relative">
 
-  <!-- Title -->
-  <h2 class="text-3xl font-bold text-center">
+  <h2 class="text-2xl font-bold text-center">
     Create <span class="text-blue-500">Account</span>
   </h2>
 
-  <p class="text-gray-300 text-center mt-2 mb-6">
+  <p class="text-gray-300 text-center mt-1 mb-4 text-sm">
     Join the Virtual AI Assistant Platform
   </p>
 
-  <!-- Form -->
-  <form>
+  <!-- ================= FORM ================= -->
+  <form onsubmit="registerUser(event)">
 
-    <!-- Name -->
-    <label class="block mb-1 text-gray-300">Full Name</label>
-    <input type="text" required
-      class="w-full mb-4 p-3 rounded-xl bg-gray-800 text-white border border-gray-700 focus:outline-none focus:border-blue-500"
+    <!-- NAME -->
+    <label class="block mb-1 text-gray-300 text-sm">Full Name</label>
+    <input id="name"
+      class="w-full px-3 py-2 rounded-xl bg-gray-800 text-white border border-gray-700
+             focus:outline-none focus:border-blue-500"
       placeholder="Enter your name">
+    <small id="nameError" class="text-red-400 text-xs"></small>
 
-    <!-- Email -->
-    <label class="block mb-1 text-gray-300">Email</label>
-    <input type="email" required
-      class="w-full mb-4 p-3 rounded-xl bg-gray-800 text-white border border-gray-700 focus:outline-none focus:border-blue-500"
+
+    <!-- EMAIL -->
+    <label class="block mb-1 text-gray-300 text-sm mt-2">Email</label>
+    <input id="email" type="email" inputmode="email" autocomplete="off"
+      class="w-full px-3 py-2 rounded-xl bg-gray-800 text-white border border-gray-700
+             focus:outline-none focus:border-blue-500"
       placeholder="Enter your email">
+    <small id="emailError" class="text-red-400 text-xs"></small>
 
-    <!-- Password -->
-    <label class="block mb-1 text-gray-300">Password</label>
-    <input type="password" required
-      class="w-full mb-4 p-3 rounded-xl bg-gray-800 text-white border border-gray-700 focus:outline-none focus:border-blue-500"
-      placeholder="Create password">
 
-    <!-- Confirm Password -->
-    <label class="block mb-1 text-gray-300">Confirm Password</label>
-    <input type="password" required
-      class="w-full mb-6 p-3 rounded-xl bg-gray-800 text-white border border-gray-700 focus:outline-none focus:border-blue-500"
-      placeholder="Confirm password">
+    <!-- PASSWORD -->
+    <label class="block mb-1 text-gray-300 text-sm mt-2">Password</label>
 
-    <!-- Register Button -->
-    <button type="submit"
-      
-      class="w-full glow-btn bg-blue-600 hover:bg-blue-500 py-3 rounded-xl font-semibold text-lg transition-all duration-300">
+    <!-- IMPORTANT: wrapper aligns eye + dot -->
+    <div class="relative password-box">
+
+      <input id="password" type="password"
+        class="w-full px-3 py-2 pr-12 rounded-xl bg-gray-800 text-white border border-gray-700
+               focus:outline-none focus:border-blue-500"
+        placeholder="Create password">
+
+      <!-- Eye Icon -->
+      <button type="button"
+        onclick="togglePassword()"
+        class="absolute right-9 top-1/2 -translate-y-1/2 text-gray-300 hover:text-white transition">
+
+        <!-- Eye Open -->
+        <svg id="eyeOpen" xmlns="http://www.w3.org/2000/svg"
+             class="h-5 w-5"
+             fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+           d="M2.458 12C3.732 7.943 7.523 5 12 5s8.268 2.943 9.542 7
+              c-1.274 4.057-5.065 7-9.542 7s-8.268-2.943-9.542-7z" />
+          <circle cx="12" cy="12" r="3" stroke-width="2" />
+        </svg>
+
+        <!-- Eye Close -->
+        <svg id="eyeClose" xmlns="http://www.w3.org/2000/svg"
+             class="h-5 w-5 hidden"
+             fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+           d="M13.875 18.825A10.05 10.05 0 0112 19c-4.477 0-8.268-2.943-9.542-7
+              a9.97 9.97 0 012.276-4.192M9.88 9.88A3 3 0 0114.12 14.12M15 12a3 3 0 00-3-3M3 3l18 18"/>
+        </svg>
+
+      </button>
+
+      <!-- DOT / CHECK -->
+      <span id="passwordTick"
+        class="absolute right-2 top-1/2 -translate-y-1/2 flex items-center justify-center text-2xl leading-none z-10"
+        style="display:none">
+        •
+      </span>
+
+    </div>
+
+    <!-- PASSWORD BUBBLE - OUTSIDE BOX -->
+    <div id="passwordHint"
+      class="hidden absolute"
+      style="margin-left: 380px; margin-top: -40px;">
+
+      <div class="bubble-box bg-gray-900 border border-gray-600 text-gray-200
+                  px-4 py-3 rounded-xl shadow-2xl w-64 text-xs">
+
+        <p class="text-blue-400 font-semibold mb-1">
+          Password Requirements
+        </p>
+
+        <div id="r1" class="mb-1">• Minimum 8 characters</div>
+        <div id="r2" class="mb-1">• Uppercase & lowercase letter</div>
+        <div id="r3" class="mb-1">• At least one number</div>
+        <div id="r4">• At least one special character (!@#$)</div>
+      </div>
+    </div>
+
+    <small id="passwordError" class="text-red-400 text-xs"></small>
+
+
+
+    <!-- CONFIRM PASSWORD -->
+    <label class="block mb-1 text-gray-300 text-sm mt-2">Confirm Password</label>
+
+    <div class="relative">
+      <input id="confirm" type="password"
+        class="w-full px-3 py-2 pr-10 rounded-xl bg-gray-800 text-white border border-gray-700
+               focus:outline-none focus:border-blue-500"
+        placeholder="Confirm password">
+    </div>
+
+    <small id="confirmError" class="text-red-400 text-xs"></small>
+
+
+    <!-- BUTTON -->
+    <button id="registerBtn"
+      class="w-full bg-blue-600 hover:bg-blue-500 py-2 mt-3 rounded-xl font-semibold
+             text-base transition-all duration-300 glow-btn
+             disabled:opacity-50 disabled:cursor-not-allowed">
       Register Account →
     </button>
 
   </form>
 
-  <!-- Login Link -->
-  <p class="text-center text-gray-300 mt-4 text-sm">
+  <!-- MESSAGE -->
+  <p id="msg" class="text-center mt-3 text-sm"></p>
+
+  <!-- LOGIN LINK -->
+  <p class="text-center text-gray-300 mt-2 text-xs">
     Already have an account?
     <a href="login.html" class="text-blue-400 hover:underline">Login here</a>
   </p>
 
 </div>
+
+<script src="register.js"></script>
 
 </body>
 </html>
