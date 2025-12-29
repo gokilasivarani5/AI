@@ -1,4 +1,66 @@
-/* ================== Fade Animation ================== */
+/* =============================== 
+   THEME VARIABLES (AUTO LIGHT / DARK)
+   =============================== */
+
+/* LIGHT THEME */
+:root {
+  --bg: #f5f7fa;
+  --card: #ffffff;
+  --text: #111827;
+  --subtext: #6b7280;
+  --border: #d1d5db;
+  --primary: #3b82f6;
+}
+
+/* DARK THEME */
+:root[data-theme="dark"] {
+  --bg: #020617;
+  --card: #020617;
+  --text: #f9fafb;
+  --subtext: #9ca3af;
+  --border: #111827;
+  --primary: #3b82f6;
+}
+
+
+/* =============================== 
+   APPLY THEME
+   =============================== */
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+/* Main cards (Login/Register/Forgot/Chat sections) */
+.card,
+.main-card,
+.container-box {
+  background: var(--card);
+  border: 1px solid var(--border);
+  color: var(--text);
+}
+
+/* Labels + small texts */
+label,
+small,
+p,
+span {
+  color: var(--subtext);
+}
+
+/* Buttons */
+button {
+  background: var(--primary);
+  color: white;
+}
+
+
+/* =============================== 
+   ANIMATIONS
+   =============================== */
+
 .fade-in {
   animation: fadeIn 1.5s ease-in-out forwards;
   opacity: 0;
@@ -10,77 +72,69 @@
 }
 
 
-/* ================== Button Glow ================== */
+/* =============================== 
+   BUTTON GLOW
+   =============================== */
+
 .glow-btn:hover {
   box-shadow: 0 0 20px rgba(59,130,246,0.9);
   transform: scale(1.03);
 }
 
 
-/* ================== Password Bubble  ================== */
+/* =============================== 
+   BUBBLE TOOLTIP BOX
+   =============================== */
+
 .bubble-box {
   position: relative;
+  border-radius: 12px;
 }
 
-/* Arrow (pointing LEFT to password field) */
+/* Arrow pointer */
 .bubble-box::before {
   content: "";
   position: absolute;
   left: -10px;
-  top: 22px;
+  top: 20px;
   width: 0;
   height: 0;
   border-top: 10px solid transparent;
   border-bottom: 10px solid transparent;
-  border-right: 10px solid #111827; /* bg-gray-900 */
+  border-right: 10px solid #1f2937;
 }
 
-/* Border edge of arrow */
+/* Border outline arrow */
 .bubble-box::after {
   content: "";
   position: absolute;
-  left: -12px;
-  top: 21px;
+  left: -11.5px;
+  top: 19.5px;
   width: 0;
   height: 0;
   border-top: 11px solid transparent;
   border-bottom: 11px solid transparent;
-  border-right: 11px solid #4b5563; /* border-gray-600 */
-}
-/* Desktop - Show on Right */
-.password-hint-container {
-  position: absolute;
-  margin-left: 380px;
-  margin-top: -40px;
+  border-right: 11px solid #4b5563;
 }
 
-/* Tablet view */
-@media (max-width: 1024px) {
-  .password-hint-container {
-    margin-left: 320px;
-  }
+
+/* =============================== 
+   SCROLLBAR (THEME MATCH)
+   =============================== */
+
+::-webkit-scrollbar {
+  width: 8px;
 }
 
-/* Mobile view */
-@media (max-width: 768px) {
-  .password-hint-container {
-    position: static;
-    margin: 10px 0 0 0;
-  }
-}
-.icon-btn{
-  background:#0b1220;
-  border:1px solid #2c3b55;
-  width:45px;
-  height:45px;
-  border-radius:12px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  transition:0.2s;
+::-webkit-scrollbar-track {
+  background: var(--bg);
 }
 
-.icon-btn:hover{
-  background:#1a2745;
-  border-color:#3f7bff;
+::-webkit-scrollbar-thumb {
+  background: #4b5563;
+  border-radius: 8px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #6b7280;
 }

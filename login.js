@@ -6,12 +6,12 @@ function toggleLoginPassword(){
 
   if(field.type === "password"){
     field.type = "text";
-    eyeOpen.classList.add("hidden");
-    eyeClose.classList.remove("hidden");
+    if(eyeOpen) eyeOpen.classList.add("hidden");
+    if(eyeClose) eyeClose.classList.remove("hidden");
   } else {
     field.type = "password";
-    eyeOpen.classList.remove("hidden");
-    eyeClose.classList.add("hidden");
+    if(eyeOpen) eyeOpen.classList.remove("hidden");
+    if(eyeClose) eyeClose.classList.add("hidden");
   }
 }
 
@@ -20,21 +20,10 @@ function toggleLoginPassword(){
 const emailInput = document.getElementById("loginEmail");
 const passwordInput = document.getElementById("loginPassword");
 const loginBtn = document.getElementById("loginBtn");
-const rememberMe = document.getElementById("rememberMe");
 const msg = document.getElementById("loginMsg");
 
 const emailError = document.getElementById("emailError");
 const passError = document.getElementById("passError");
-
-
-// ================= REMEMBER ME (Auto Fill) =================
-window.onload = () => {
-  let savedEmail = localStorage.getItem("rememberEmail");
-  if(savedEmail){
-    emailInput.value = savedEmail;
-    rememberMe.checked = true;
-  }
-};
 
 
 // ================= VALIDATION =================
@@ -92,42 +81,7 @@ function loginUser(event){
 
     localStorage.setItem("loggedUser", JSON.stringify(validUser));
 
-    if(rememberMe.checked){
-      localStorage.setItem("rememberEmail", email);
-    } else {
-      localStorage.removeItem("rememberEmail");
-    }
-
     setTimeout(()=> window.location.href = "chat.html", 1200);
 
   }, 600);
-}
-
-
-
-// ================= FORGOT PASSWORD =================
-function openForgotPassword(){
-  let email = prompt("Enter your registered email:");
-
-  if(!email) return;
-
-  let users = JSON.parse(localStorage.getItem("users")) || [];
-  let userIndex = users.findIndex(u => u.email === email);
-
-  if(userIndex === -1){
-    alert("⚠️ Email not registered");
-    return;
-  }
-
-  let newPass = prompt("Enter your NEW password:");
-
-  if(!newPass || newPass.length < 4){
-    alert("Password must be at least 4 characters");
-    return;
-  }
-
-  users[userIndex].password = newPass;
-  localStorage.setItem("users", JSON.stringify(users));
-
-  alert("🎉 Password reset successfully! Login now.");
 }

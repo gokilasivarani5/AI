@@ -1,4 +1,4 @@
-// ================= PASSWORD SHOW / HIDE ================= 
+// ================= SHOW / HIDE PASSWORD =================
 function togglePassword(){
   const field = document.getElementById("password");
   const eyeOpen = document.getElementById("eyeOpen");
@@ -42,8 +42,7 @@ if(nameInput){
 }
 
 
-
-// ================= PASSWORD RULE CHECK =================
+// ================= PASSWORD CHECK RULES =================
 function checkPasswordRules(password){
   return {
     length: password.length >= 8,
@@ -54,49 +53,41 @@ function checkPasswordRules(password){
 }
 
 
-
 // ================= PASSWORD BUBBLE POSITION =================
 function positionHint() {
   const box = passInput.getBoundingClientRect();
-  passwordHint.style.left = (box.right + 20) + "px";
-  passwordHint.style.top  = (box.top - 10) + "px";
+
+  passwordHint.style.left = (box.right + 35) + "px";   // further right
+  passwordHint.style.top  = (box.top - 5) + "px";
 }
 
-// Show bubble when focus
+
 passInput?.addEventListener("focus", ()=>{
   passwordHint.classList.remove("hidden");
   passwordHint.style.display = "block";
-
   passwordTick.style.display = "block";
   passwordTick.innerText = "•";
   passwordTick.style.color = "gray";
-
   positionHint();
 });
 
-// Hide bubble when empty + blur
 passInput?.addEventListener("blur", ()=>{
   if(passInput.value === ""){
     passwordHint.classList.add("hidden");
-    passwordHint.style.display = "none";
     passwordTick.style.display = "none";
   }
 });
 
-// Reposition always
 window.addEventListener("scroll", positionHint);
 window.addEventListener("resize", positionHint);
 
 
-
-// ================= LIVE PASSWORD VALIDATION ALWAYS =================
+// ================= LIVE PASSWORD VALIDATION =================
 passInput?.addEventListener("input", ()=>{
   validateForm();
   passwordHint.classList.remove("hidden");
-  passwordHint.style.display = "block";
   positionHint();
 });
-
 
 
 // ================= VALIDATION ========================
@@ -104,8 +95,7 @@ function validateForm(showAll = false){
   let valid = true;
   if(showAll) touched = {name:true,email:true,password:true,confirm:true};
 
-
-  // ================= NAME =================
+  // NAME
   if(touched.name){
     if(nameInput.value.trim() === ""){
       document.getElementById("nameError").innerText = "Please enter your name";
@@ -113,8 +103,7 @@ function validateForm(showAll = false){
     } else document.getElementById("nameError").innerText = "";
   }
 
-
-  // ================= EMAIL =================
+  // EMAIL
   if(touched.email){
     let value = emailInput.value.trim();
     let emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
@@ -131,15 +120,14 @@ function validateForm(showAll = false){
   }
 
 
-
-  // ================= PASSWORD =================
+  // PASSWORD
   const p = passInput.value;
   const rules = checkPasswordRules(p);
 
-  document.getElementById("r1").style.color = rules.length ? "lightgreen" : "#ff6b6b";
-  document.getElementById("r2").style.color = rules.upperLower ? "lightgreen" : "#ff6b6b";
-  document.getElementById("r3").style.color = rules.number ? "lightgreen" : "#ff6b6b";
-  document.getElementById("r4").style.color = rules.special ? "lightgreen" : "#ff6b6b";
+  document.getElementById("r1").style.color = rules.length ? "lightgreen" : "red";
+  document.getElementById("r2").style.color = rules.upperLower ? "lightgreen" : "red";
+  document.getElementById("r3").style.color = rules.number ? "lightgreen" : "red";
+  document.getElementById("r4").style.color = rules.special ? "lightgreen" : "red";
 
   let score = 0;
   if(rules.length) score++;
@@ -166,12 +154,11 @@ function validateForm(showAll = false){
   else{
     passwordTick.innerHTML = `
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none"
-           stroke="#22c55e" stroke-width="3" stroke-linecap="round"
-           stroke-linejoin="round">
-        <polyline points="20 6 9 17 4 12" />
+       stroke="#22c55e" stroke-width="3" stroke-linecap="round"
+       stroke-linejoin="round">
+       <polyline points="20 6 9 17 4 12" />
       </svg>`;
     passwordHint.classList.add("hidden");
-    passwordHint.style.display = "none";
   }
 
   const passwordValid = score === 4;
@@ -186,9 +173,7 @@ function validateForm(showAll = false){
     }
   }
 
-
-
-  // ================= CONFIRM PASSWORD =================
+  // CONFIRM PASSWORD
   if(touched.confirm){
     if(confirmInput.value !== p || p === ""){
       document.getElementById("confirmError").innerText = "Passwords do not match";
@@ -201,7 +186,6 @@ function validateForm(showAll = false){
   if(btn) btn.disabled = !valid;
   return valid;
 }
-
 
 
 // ================= REGISTER ================================

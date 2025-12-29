@@ -10,105 +10,118 @@
 
 </head>
 
-<body class="bg-gradient-to-br from-gray-900 via-black to-blue-950 text-white min-h-screen flex items-center justify-center">
+<body class="min-h-screen flex items-center justify-center
+bg-white dark:bg-gradient-to-br dark:from-gray-900 dark:via-black dark:to-blue-950
+text-black dark:text-white">
 
-<div class="w-full max-w-xs md:max-w-sm mx-4 bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl p-4 fade-in">
+<div class="w-full max-w-md mx-auto px-6">
+<div class="fade-in bg-white dark:bg-white/10 border border-gray-300 dark:border-white/20 shadow-2xl rounded-3xl p-6 md:p-8 relative">
 
-  <h2 class="text-2xl font-bold text-center">
-    Welcome <span class="text-blue-500">Back</span>
-  </h2>
+<!-- BACK -->
+<button onclick="goBack()" class="absolute left-3 top-3 text-gray-500 dark:text-gray-300">⬅</button>
 
-  <p class="text-gray-300 text-center mt-1 mb-4 text-sm">
-    Login to continue your AI journey
-  </p>
+<h2 class="text-2xl font-bold text-center">
+Welcome <span class="text-blue-500">Back</span>
+</h2>
 
+<p class="text-gray-500 dark:text-gray-300 text-center mt-1 mb-4 text-sm">
+Login to continue your AI journey
+</p>
 
-  <!-- ================= LOGIN FORM ================= -->
-  <form onsubmit="loginUser(event)">
+<form onsubmit="loginUser(event)">
 
-    <!-- EMAIL -->
-    <label class="block mb-1 text-gray-300 text-sm">Email</label>
-    <input id="loginEmail"
-      class="w-full px-3 py-2 rounded-xl bg-gray-800 text-white border border-gray-700
-      focus:outline-none focus:border-blue-500"
-      placeholder="Enter your email">
+<!-- EMAIL -->
+<label class="block text-gray-500 dark:text-gray-300 mb-1 text-sm">
+Email
+</label>
 
-    <small id="emailError" class="text-red-400 text-xs"></small>
+<input id="loginEmail"
+class="w-full px-3 py-2 rounded-xl bg-gray-200 dark:bg-gray-800 border border-gray-300 dark:border-gray-700 text-black dark:text-white focus:outline-none focus:border-blue-500"
+placeholder="Enter your email">
 
-
-
-    <!-- PASSWORD -->
-    <label class="block mb-1 text-gray-300 text-sm mt-3">Password</label>
-
-    <div class="relative">
-      <input id="loginPassword" type="password"
-        class="w-full px-3 py-2 pr-12 rounded-xl bg-gray-800 text-white border border-gray-700
-        focus:outline-none focus:border-blue-500"
-        placeholder="Enter password">
-
-      <!-- Eye Button -->
-      <button type="button"
-        onclick="toggleLoginPassword()"
-        class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-300 hover:text-white">
-        
-        <svg id="eyeOpenLogin" xmlns="http://www.w3.org/2000/svg"
-          class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-           d="M2.458 12C3.732 7.943 7.523 5 12 5s8.268 2.943 9.542 7
-              c-1.274 4.057-5.065 7-9.542 7s-8.268-2.943-9.542-7z" />
-          <circle cx="12" cy="12" r="3" stroke-width="2" />
-        </svg>
-
-        <svg id="eyeCloseLogin" xmlns="http://www.w3.org/2000/svg"
-          class="h-5 w-5 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-           d="M13.875 18.825A10.05 10.05 0 0112 19c-4.477 0-8.268-2.943-9.542-7
-              a9.97 9.97 0 012.276-4.192M3 3l18 18"/>
-        </svg>
-      </button>
-    </div>
-
-    <small id="passError" class="text-red-400 text-xs"></small>
+<small id="emailError" class="text-red-400 text-xs"></small>
 
 
-    <!-- REMEMBER + FORGOT -->
-    <div class="flex justify-between items-center mt-2 text-xs">
+<!-- PASSWORD -->
+<label class="block text-gray-500 dark:text-gray-300 mb-1 mt-2 text-sm">
+Password
+</label>
 
-      <label class="flex items-center gap-2 cursor-pointer">
-        <input type="checkbox" id="rememberMe">
-        <span>Remember Me</span>
-      </label>
+<div class="relative">
 
-     <a href="forgot-password.html" class="text-blue-400 hover:underline">
-  Forgot Password?
-</a>
+<input id="loginPassword" type="password"
+class="w-full px-3 py-2 pr-12 rounded-xl bg-gray-200 dark:bg-gray-800 border border-gray-300 dark:border-gray-700 text-black dark:text-white focus:outline-none focus:border-blue-500"
+placeholder="Enter password">
 
-    </div>
+<!-- EYE ICON -->
+<button type="button"
+onclick="toggleLoginPassword()"
+class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 dark:text-gray-300">
 
+<svg id="eyeOpenLogin" xmlns="http://www.w3.org/2000/svg"
+class="h-5 w-5"
+fill="none"
+viewBox="0 0 24 24"
+stroke="currentColor">
+<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+d="M2.458 12C3.732 7.943 7.523 5 
+12 5s8.268 2.943 9.542 7
+c-1.274 4.057-5.065 7-9.542 7
+s-8.268-2.943-9.542-7z" />
+<circle cx="12" cy="12" r="3" stroke-width="2" />
+</svg>
 
-    <!-- LOGIN BUTTON -->
-    <button id="loginBtn"
-      class="w-full glow-btn bg-blue-600 hover:bg-blue-500 py-2 mt-4 rounded-xl font-semibold
-      text-base transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed">
-      Login →
-    </button>
+<svg id="eyeCloseLogin" xmlns="http://www.w3.org/2000/svg"
+class="h-5 w-5 hidden"
+fill="none"
+viewBox="0 0 24 24"
+stroke="currentColor">
+<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+d="M13.875 18.825A10.05 10.05 0 0112 19
+c-4.477 0-8.268-2.943-9.542-7
+a9.97 9.97 0 012.276-4.192M9.88 9.88
+A3 3 0 0114.12 14.12M3 3l18 18"/>
+</svg>
 
-  </form>
-
-
-  <!-- MESSAGE -->
-  <p id="loginMsg" class="text-center mt-2 text-sm"></p>
-
-
-  <!-- REGISTER LINK -->
-  <p class="text-center text-gray-300 mt-2 text-xs">
-    Don’t have an account?
-    <a href="register.html" class="text-blue-400 hover:underline">Register here</a>
-  </p>
-
+</button>
 
 </div>
 
+<small id="passError" class="text-red-400 text-xs"></small>
+
+
+<!-- FORGOT PASSWORD -->
+<div class="flex justify-end mt-1 text-xs">
+<a href="forgot-password.html" class="text-blue-400 hover:underline">
+Forgot Password?
+</a>
+</div>
+
+
+<!-- LOGIN BUTTON -->
+<button id="loginBtn"
+class="w-full glow-btn bg-blue-600 hover:bg-blue-500 py-2 mt-4 rounded-xl font-semibold">
+Login →
+</button>
+
+</form>
+
+<p id="loginMsg" class="text-center mt-2 text-sm"></p>
+
+<p class="text-center text-gray-500 dark:text-gray-300 mt-2 text-xs">
+Don’t have an account?
+<a href="register.html" class="text-blue-400 hover:underline">Register here</a>
+</p>
+
+</div>
+</div>
+
 <script src="login.js"></script>
+<script src="theme.js"></script>
+
+<script>
+function goBack(){window.history.back()}
+</script>
+
 </body>
 </html>
