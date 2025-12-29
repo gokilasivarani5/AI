@@ -68,3 +68,19 @@
     margin: 10px 0 0 0;
   }
 }
+.icon-btn{
+  background:#0b1220;
+  border:1px solid #2c3b55;
+  width:45px;
+  height:45px;
+  border-radius:12px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  transition:0.2s;
+}
+
+.icon-btn:hover{
+  background:#1a2745;
+  border-color:#3f7bff;
+}
